@@ -1,0 +1,99 @@
+{% extends 'smartphone/master' %}
+{% set page = 'timetable' %}
+{% block content %}
+H
+    <div id="main">
+			<h1>Timetable</h1>
+			<br />
+			<div id="downloads">
+				<p><a href="{{ serviceUrl('redirect', {'url': asset('butter-smart') ~ '/img/Fat-As-Butter-timetable.jpg'}) }}" target="_blank">Download Timetable  &darr;<br /><small>(image: 112kb)</small></a></p>
+				<p>To save image to your phone, open above link then: <br />
+				<small><strong>iPhone/Android/Windows7:</strong> Tap &amp; hold > Save Image<br /><strong>Blackberry:</strong> Menu Key > Save Page</small></p>
+			</div>
+			<p class="toggletools right"><span class="showall">+ Open Sesame!</span> &nbsp; <span class="hideall">- Collapse all</span><div class="clearfix"></div>	
+			</p>
+			<p></p>
+			<section>
+				<h2 class="stage">FAT STAGE<span class="right">+</span></h2>
+				<ul class="accordion timetable clearfix">
+				{% for entry in timetableData['Fat Stage'] %}
+					<li>
+						{% if entry.hasPage == 1 %}
+						    <h3><a href="{{ serviceUrl('main/artist', {'artist':entry.artist }) }}">{{ entry.artist }}</a></h3>
+						{% else %}
+						    <h3>{{ entry.artist }}</h3>
+						{% endif %}
+						<p>{{ entry.time }} <span>PM</span></p>
+						<div class="clearfix"></div>
+					</li>
+				{% endfor %}
+				</ul>
+			</section>
+			
+			<section>
+				<h2 class="stage">Butter Stage<span class="right">+</span></h2>
+				<ul class="accordion timetable clearfix">
+				{% for entry in timetableData['Butter Stage'] %}
+					<li>
+						{% if entry.hasPage == 1 %}
+						    <h3><a href="{{ serviceUrl('main/artist', {'artist':entry.artist }) }}">{{ entry.artist }}</a></h3>
+						{% else %}
+						    <h3>{{ entry.artist }}</h3>
+						{% endif %}						<p>{{ entry.time }} <span>PM</span></p>
+						<div class="clearfix"></div>
+					</li>
+				{% endfor %}
+				</ul>
+			</section>
+			
+			<section>
+				<h2 class="stage">Fabio Stage<span class="right">+</span></h2>
+				<ul class="accordion timetable clearfix">
+				{% for entry in timetableData['Fabio Stage'] %}
+					<li>
+						{% if entry.hasPage == 1 %}
+						    <h3><a href="{{ serviceUrl('main/artist', {'artist':entry.artist }) }}">{{ entry.artist }}</a></h3>
+						{% else %}
+						    <h3>{{ entry.artist }}</h3>
+						{% endif %}						<p>{{ entry.time }} <span>PM</span></p>
+						<div class="clearfix"></div>
+					</li>
+				{% endfor %}
+				
+				</ul>
+			</section>
+			
+
+			<section>
+				<h2 class="stage">The Redbull Event Vehicle<span class="right">+</span></h2>
+				<ul class="accordion timetable clearfix">
+				{% for entry in timetableData['The Redbull Event Vehicle'] %}
+					<li>
+						{% if entry.hasPage == 1 %}
+						    <h3><a href="{{ serviceUrl('main/artist', {'artist':entry.artist }) }}">{{ entry.artist }}</a></h3>
+						{% else %}
+						    <h3>{{ entry.artist }}
+						    {% if entry.artist == 'Freddy La Funk' %}
+							<br/><span>Bondi House DJs</span>
+						    {% endif %}
+							</h3>
+						{% endif %}
+						<p>{{ entry.time }} <span>PM</span></p>
+						<div class="clearfix"></div>
+					</li>
+				{% endfor %}
+				
+				</ul>
+			</section>
+
+			<p class="toggletools right"><span class="showall">+ Open Sesame!</span> &nbsp; <span class="hideall">- Collapse All</span>
+
+			</p><div class="clearfix"></div>
+
+			<a href="#top" class="top clearfix" style="padding:20px 10px;">&#x2191; Back to top</a>
+			<div class="clearfix"></div>
+
+    </div>
+
+ {% endblock %}
+ 
