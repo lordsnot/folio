@@ -1,5 +1,0 @@
-Notes:
-
-A general FrontController and an inheriting WapFrontController with mobile site particulars.
-
-RenderSelector provides an injectable class which provide a way to determine the appropriate format for rendering the resultant output of a request
