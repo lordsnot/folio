@@ -1,0 +1,10 @@
+Notes:
+
+dependecies.php 
+shows the dependencies used for inhouse toolset which was used by all staff. The inhouse tools provided systems for uploading, scheduling and targeting banner ads across multiple publishers, sales reports, pipelines, user management, impression and click through reports, an IO system, small ad hoc tools, 
+
+home.twig
+The home page for a tool which could be used to browse and create rich media banner units
+
+site.php
+The particular details about the rich media banner creator tool, including extra and overwriting dependencies
