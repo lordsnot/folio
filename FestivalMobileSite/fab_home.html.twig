@@ -1,0 +1,37 @@
+{% extends 'smartphone/master' %}
+{% set page = 'home' %}
+{% block content %}
+
+    <div id="main">
+				<ul id="nav">
+					<li><a href="{{ serviceUrl('main/lineup') }}"><img src="{{ asset('butter-smart') }}/img/01_lineup.png" alt="Lineup" /><br />Lineup</a></li>
+					<li><a href="{{ serviceUrl('main/timetable') }}"><img src="{{ asset('butter-smart') }}/img/02_timetable.png" alt="Timetable" /><br />Timetable</a></li>
+					<li><a href="{{ serviceUrl('main/venue') }}"><img src="{{ asset('butter-smart') }}/img/03_venue.png" alt="Venue" /><br />Venue</a></li>
+					<li><a href="{{ serviceUrl('main/transport') }}"><img src="{{ asset('butter-smart') }}/img/04_transport.png" alt="Transport" /><br />Transport</a></li>
+					<li><a href="{{ serviceUrl('main/entry') }}"><img src="{{ asset('butter-smart') }}/img/05_entry.png" alt="Entry" /><br />Conditions of Entry</a></li>
+					<li><a href="{{ serviceUrl('main/faq') }}"><img src="{{ asset('butter-smart') }}/img/06_faq.png" alt="Faq" /><br />FAQ</a></li>
+				</ul><div class="clearfix"></div>
+		</div>
+
+		<section id="downloads">
+			<h1 class="highlight">Downloads</h1>
+			<br />
+			<p><a href="{{ serviceUrl('redirect', {'url': asset('butter-smart') ~ '/img/Fat-As-Butter-timetable.jpg'}) }}" target="_blank">Timetable (image: 112kb) &darr;</a></p>
+			<p><a href="{{ serviceUrl('redirect', {'url': asset('butter-smart') ~ '/img/Fat-As-Butter-venue-mudmap.jpg'}) }}" target="_blank">Venue Map (image: 131kb) &darr;</a></p>
+			
+			<p>To save image to your phone, open above links then: <br />
+			<small><strong>iPhone/Android/Windows7:</strong> Tap &amp; hold > Save Image<br /><strong>Blackberry:</strong> Menu Key > Save Page</small></p>
+			
+		</section>
+				
+		<section id="fbFeed">
+			<iframe src="http://www.facebook.com/plugins/likebox.php?href=http%3A%2F%2Fwww.facebook.com%2Ffatasbutter&amp;width=300&amp;colorscheme=light&amp;show_faces=false&amp;border_color&amp;stream=true&amp;header=false&amp;height=395" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:300px; height:395px;background:#FFF" allowTransparency="false"></iframe>
+		</section>
+	
+		<section id="video">
+				<h1>Fat As Butter</h1>
+				<iframe width="300" height="199" src="http://www.youtube.com/embed/Hrclme14xbQ" frameborder="0" allowfullscreen style="width:300px;display:block;margin: 0 auto"></iframe>
+		</section>
+
+  
+ {% endblock %}

@@ -1,0 +1,81 @@
+{% extends 'creative/master.twig' %}
+
+{% block content %}
+
+{# requires the mediaUnit variable be of type BigPicture\Sites\Creative\MediaUnit\MultiSize #}
+
+<form id="editForm" class="editCreativeForm" name="editForm" action="" method="post" data-ajaxurl="{{ serviceUrl('home/save')}}">
+
+<br/><br/>
+
+<span>
+	<label>Creative Name:</label>
+	<input type="text" value="{{ mediaUnit.creative.name }}" id="creative-name" name="creativeData[creativeName]"/>
+</span>
+<input type="hidden" id="newBanner" name="newBanner" value="0" /> 
+<input type="hidden" id='creativeId' value="{{ mediaUnit.getCreativeEditId }}" name='creativeData[creativeId]' />
+<input type="hidden" id='mediaTypeId' value="{{mediaUnit.creative.mediaTypeId}}" name='creativeData[mediaTypeId]' />
+<input type="hidden" id='creativeType' value="{{mediaUnit.creative.creativeType}}" name='creativeData[creativeType]' />
+<input type="hidden" id='versionId' value="{{mediaUnit.creative.versionId}}" name='creativeData[versionId]' />
+
+<br/><br/>
+<label for="bannerGroup">Media Unit</label>
+<select id="bannerGroup" name="media_unit" class='uiselect'>
+	{% for type in creativeTypes %}
+	{% if type.creative_type != 'RMU' %}
+	<option value="{{type.creative_media_type_id}}" 
+		{% if type.creative_media_type_id == mediaUnit.creative.mediaTypeId %}
+			selected
+		{% endif %}
+		expandable="{{type.expandable}}">{{type.name}}</option>
+	{% endif %}
+	{% endfor %}
+</select>
+</div>
+<br/><br/>
+
+<div id="banners">
+	{% for type in creativeTypes %}
+		{% if type.creative_media_type_id == mediaUnit.creative.mediaTypeId %}
+			{% set showImage = 1 %}
+		{% else %}
+			{% set showImage = 0 %}
+		{% endif %}
+		<div class="mediaunit" data-bannergroups="{{type.creative_media_type_id}}" style="display:none;">
+			{% include 'creative/media/image_loader.twig' 
+				with {'mediaUnit': mediaUnit, 
+					  'mediaType': type, 
+					  'editToken': editToken,
+					  'previewAction': 'multisize',
+					  'showImage': showImage}
+			%}
+		</div>
+	{% endfor %}
+</div>
+
+{% if mediaUnit.expandableSupport %}
+<br/>
+	<div id='expandableContainer' class='expandables' data-mediaunitid="{{mediaUnit.creative.mediaTypeId}}">
+		<label>Expandable:</label>
+		<select name="creativeData[expandableId]" id="expandableId" class="uiselect"  >
+			<option value="">None</option>
+			{% for expandable in mediaUnit.listAvailableExpandables %}
+				<option {% if mediaUnit.creative.expandableId == expandable.id %}selected="selected"{% endif %} value="{{expandable.id}}">{{expandable.name}}</option>
+			{% endfor %}
+		</select>
+		<br/>
+		<div class='modeSelector' id='expModeSelector_{{mediaUnit.creative.mediaTypeId}}' {% if not mediaUnit.creative.expandableId %} style="display:none;" {% endif %}>			
+				<span id="otpTimeout" {% if mediaUnit.creative.expandMode != 'otp' %}style='display:none;'{% endif %}>
+				<label style='text-align: right;' for='creativeData[{{mediaUnit.creative.mediaTypeId}}][otpTimeout]'>Delay (secs)</label>
+				{% set otpTimeout = mediaUnit.creative.otpTimeout ? mediaUnit.creative.otpTimeout : 5 %}
+				<input type='number' value='{{otpTimeout}}' name='creativeData[otpTimeout]' id='creativeData[otpTimeout]' size="3" min="1" max="5" data-validate="digits:true, max:5"/>
+			</span>
+			
+			</span>
+		</div>
+	</div>
+{% endif %}
+<button id="banner_submit">Save</button>
+</form>
+</div>
+{% endblock %}
